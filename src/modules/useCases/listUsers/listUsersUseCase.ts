@@ -5,7 +5,7 @@ export class ListUsersUseCase {
 
   execute(user_id: string) {
     const userIsAdmin = this.usersRepository.verifyIfIsAdmin(user_id);
-    const allCategories = this.usersRepository.list();
+    const allCategories = this.usersRepository.list;
 
     if (userIsAdmin) {
       return allCategories;

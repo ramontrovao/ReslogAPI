@@ -9,6 +9,7 @@ export class ListUsersController {
 
     try {
       const allUsers = this.listUsersUseCase.execute(user_id as string);
+
       return res.status(202).json(allUsers);
     } catch {
       return res.status(401).send();
