@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { VerifyIfEmailIsTakenMiddleware } from "../modules/middlewares/verifyIfEmailIsTaken/verifyIfEmailIsTakenMiddleware";
-import { VerifyIfUserExistsMiddleware } from "../modules/middlewares/verifyIfUserExists/verifyIfUserExistsMiddleware";
-import { VerifyIfUserIsAdminMiddleware } from "../modules/middlewares/verifyIfUserIsAdmin/verifyIfUserExistsMiddleware";
-import { createUserController } from "../modules/useCases/createUser";
-import { findUserByIdController } from "../modules/useCases/findUserById";
-import { listUsersController } from "../modules/useCases/listUsers";
-import { turnUserAdminController } from "../modules/useCases/turnUserAdmin";
+import { VerifyIfEmailIsTakenMiddleware } from "../middlewares/verifyIfEmailIsTaken/verifyIfEmailIsTakenMiddleware";
+import { VerifyIfUserExistsMiddleware } from "../middlewares/verifyIfUserExists/verifyIfUserExistsMiddleware";
+import { VerifyIfUserIsAdminMiddleware } from "../middlewares/verifyIfUserIsAdmin/verifyIfUserExistsMiddleware";
+import { createUserController } from "../modules/users/useCases/createUser";
+import { findUserByIdController } from "../modules/users/useCases/findUserById";
+import { listUsersController } from "../modules/users/useCases/listUsers";
+import { turnUserAdminController } from "../modules/users/useCases/turnUserAdmin";
 
 export const userRouter = Router();
 
