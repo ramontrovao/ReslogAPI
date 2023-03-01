@@ -60,4 +60,12 @@ export class UsersRepository implements IUserRepository {
 
     return userExists;
   }
+
+  emailIsAlreadyRegistered(user_email: string): boolean {
+    const emailIsAlreadyRegistered = this.users.some(
+      (user) => user.email === user_email
+    );
+
+    return emailIsAlreadyRegistered;
+  }
 }

@@ -12,4 +12,5 @@ export interface IUserRepository {
   verifyIfUserExists(user_id: string): boolean;
   set turnUserAdmin(user_id: string);
   verifyIfUserIsAdmin(user_id: string): boolean;
+  emailIsAlreadyRegistered(user_email: string): boolean;
 }
