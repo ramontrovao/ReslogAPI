@@ -8,7 +8,8 @@ export interface ICreateUserDTO {
 export interface IUserRepository {
   create({ name, email }: ICreateUserDTO): void;
   get list(): User[];
-  verifyIfIsAdmin(user_id: string): boolean;
   findUserById(user_id: string): User | undefined;
+  verifyIfUserExists(user_id: string): boolean;
   set turnUserAdmin(user_id: string);
+  verifyIfUserIsAdmin(user_id: string): boolean;
 }

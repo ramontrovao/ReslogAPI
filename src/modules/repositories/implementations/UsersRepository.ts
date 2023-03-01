@@ -28,23 +28,25 @@ export class UsersRepository implements IUserRepository {
     this.users.push(newUser);
   }
 
-  verifyIfIsAdmin(user_id: string): boolean {
-    if (user_id === "admin") {
-      return true;
-    }
-
-    const userIsAdmin = this.users.some((user) => user.id === user_id);
-
-    return userIsAdmin;
+  public get list() {
+    return this.users;
   }
 
   public set turnUserAdmin(user_id: string) {
     const userToChange = this.findUserById(user_id);
-    if (userToChange) {
-      userToChange.admin = true;
-    } else {
-      throw new Error("User not exists!");
+    userToChange!.admin = true;
+  }
+
+  verifyIfUserIsAdmin(user_id: string): boolean {
+    if (user_id === "admin") {
+      return true;
     }
+
+    const userIsAdmin = this.users.some(
+      (user) => user.id === user_id && user.admin === true
+    );
+
+    return userIsAdmin;
   }
 
   findUserById(user_id: string): User | undefined {
@@ -53,7 +55,9 @@ export class UsersRepository implements IUserRepository {
     return userFound;
   }
 
-  public get list() {
-    return this.users;
+  verifyIfUserExists(user_id: string): boolean {
+    const userExists = this.users.some((user) => user.id === user_id);
+
+    return userExists;
   }
 }

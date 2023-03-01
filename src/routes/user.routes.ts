@@ -1,4 +1,6 @@
 import { Router } from "express";
+import { VerifyIfUserExistsMiddleware } from "../modules/middlewares/verifyIfUserExists/verifyIfUserExistsMiddleware";
+import { VerifyIfUserIsAdminMiddleware } from "../modules/middlewares/verifyIfUserIsAdmin/verifyIfUserExistsMiddleware";
 import { createUserController } from "../modules/useCases/createUser";
 import { findUserByIdController } from "../modules/useCases/findUserById";
 import { listUsersController } from "../modules/useCases/listUsers";
@@ -10,14 +12,23 @@ userRouter.post("/", (req, res) => {
   return createUserController.handle(req, res);
 });
 
-userRouter.patch("/:user_id/admin", (req, res) => {
-  return turnUserAdminController.handle(req, res);
-});
+userRouter.patch(
+  "/:user_id/admin",
+  VerifyIfUserExistsMiddleware,
+  (req, res) => {
+    return turnUserAdminController.handle(req, res);
+  }
+);
 
-userRouter.get("/:user_id", (req, res) => {
+userRouter.get("/:user_id", VerifyIfUserExistsMiddleware, (req, res) => {
   return findUserByIdController.handle(req, res);
 });
 
-userRouter.get("/", (req, res) => {
-  return listUsersController.handle(req, res);
-});
+userRouter.get(
+  "/",
+  VerifyIfUserExistsMiddleware,
+  VerifyIfUserIsAdminMiddleware,
+  (req, res) => {
+    return listUsersController.handle(req, res);
+  }
+);
